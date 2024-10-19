@@ -1,15 +1,28 @@
 <script setup lang="ts">
-import FinalSlide from './components/FinalSlide.vue';
-import WhoAmI from './components/WhoAmI.vue';
+import { ref } from 'vue';
+import { slidesOptions } from './utils/presentationList';
+
+const isSlideSelected = ref(false);
+const selectedSlideIndex = ref(0);
+const selectSlide = (index: number) => {
+  selectedSlideIndex.value = index;
+  isSlideSelected.value = true;
+}
 </script>
 
 <template>
-  <section data-background="#6272a4">
-    <WhoAmI :hasShadow="true"></WhoAmI>
-  </section>
-  <section data-background="#282a43">
-    <FinalSlide></FinalSlide>
-  </section>
+  <template v-if="!isSlideSelected">
+    <section v-for="[index, slide] in slidesOptions.entries()" key="index">
+      <h2>{{  slide.name }}</h2>
+      <p> Ministrado em <b>{{ slide.formatedDate }}</b></p>
+      <blockquote>{{ slide.description }}</blockquote>
+      <button @click="selectSlide(index)">Apresentar slide</button>
+    </section>
+  </template>
+  <template v-else>
+    <section></section>
+    <component :is="slidesOptions[selectedSlideIndex].type" />
+  </template>
 </template>
 
 <style scoped>

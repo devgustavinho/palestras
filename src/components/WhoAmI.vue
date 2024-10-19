@@ -9,7 +9,7 @@
         <small>Gustavinho, para os chegados</small>
         <ul>
           <li>{{ years }}</li>
-          <li v-for="presentation of presentations">{{ presentation }}</li>
+          <li class="fragment" v-for="presentation of presentations">{{ presentation }}</li>
         </ul>
       </div>
     </div>
@@ -17,7 +17,13 @@
 </template>
 
 <script setup lang="ts">
-defineProps<{ hasShadow?: boolean }>()
+type WhoAmIType = {
+  imgSrc?: string;
+  seriousPresentation?: string[];
+  hasShadow?: boolean;
+}
+
+defineProps<WhoAmIType>()
 import RoundedImg from '../atoms/RoundedImg.vue';
 import { selectRandomItem } from '../utils/dates';
 import { whatIDoMessages, yearsOldMessages } from '../utils/presentationMessages';
@@ -39,6 +45,7 @@ for (let i = 0; i < 3; i++) {
 .flex {
   display: flex;
   flex-direction: row;
+  align-items: flex-start;
 }
 
 .flex>div {

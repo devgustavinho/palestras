@@ -4,6 +4,8 @@ const birthDate = new Date(1996, 8, 30);
 const carreiraAge = new Date(2019, 11, 1);
 const { age, since } = myAgeDetails(birthDate);
 const carreiraAgeDetails = myAgeDetails(carreiraAge);
+carreiraAgeDetails.age++;
+
 const { days, months, weeks } = myNextBirthDayDetails(birthDate);
 
 const yearsOld: Message[] = [
@@ -21,9 +23,8 @@ const whatIDo: Message[] = [
     { msg: "Melhor amigo do Typescript, mas traio ele com o Python quando posso.", shouldBeExecuted: true},
     { msg: `${carreiraAgeDetails.age} anos resolvendo problemas que o usuário nem sabia que tinha.`, shouldBeExecuted: true},
     { msg: "Definitivamente um dos palestrantes que você verá no dia de hoje. ANOTEM.", shouldBeExecuted: true},
-    { msg: `Vestindo a camisa da empresa e botando a mão na massa para desenvolver soluções fora da caixa desde ${carreiraAgeDetails.since}. — FariaLimeiro, Gustavinho`, shouldBeExecuted: true},
     { msg: "Inimigo do inimigo do else. Pode usar.", shouldBeExecuted: true},
-    { msg: `Júnior de ${carreiraAgeDetails.age} anos. Ainda não sei nada sobre o último framework da moda.`, shouldBeExecuted: true}    
+    { msg: `Júnior de ${carreiraAgeDetails.age} anos. Ainda não sei nada sobre o último framework da moda.`, shouldBeExecuted: true },    
 ]
 
 export const yearsOldMessages = yearsOld.filter( s => s.shouldBeExecuted).map( s => s.msg );

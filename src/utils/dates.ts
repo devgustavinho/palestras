@@ -40,8 +40,16 @@ export function myNextBirthDayDetails(birthDate: Date): { months: number, days: 
     const oneMonthMs = oneDayMs * 30.44;
 
     const months = Math.floor(diffMs / oneMonthMs);
-    const days = Math.floor((diffMs % oneMonthMs) / oneDayMs);
+    const days = Math.floor(diffMs / oneDayMs);
     const weeks = Math.floor(days / 7);
-
+    console.log({ months, days, weeks })
     return { months, days, weeks };
+}
+
+export const formatDate = (date: Date) => {
+    return new Intl.DateTimeFormat('pt-BR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(date);
 }
