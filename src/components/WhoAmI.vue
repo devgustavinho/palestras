@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div>
-      <RoundedImg :has-shadow="hasShadow" :src="img" alt="Logo Gustavinho" />
+      <RoundedImg :has-shadow="hasShadow" :src="imgSrc ?? img" alt="Logo Gustavinho" />
     </div>
     <div>
       <div>
@@ -9,7 +9,7 @@
         <small>Gustavinho, para os chegados</small>
         <ul>
           <li>{{ years }}</li>
-          <li class="fragment" v-for="presentation of presentations">{{ presentation }}</li>
+          <li class="fragment" v-for="presentation of presentations" :key="presentation" v-html="presentation"></li>
         </ul>
       </div>
     </div>
@@ -19,26 +19,34 @@
 <script setup lang="ts">
 type WhoAmIType = {
   imgSrc?: string;
-  seriousPresentation?: string[];
+  overridePresentations?: string[];
   hasShadow?: boolean;
 }
 
-defineProps<WhoAmIType>()
+const { overridePresentations } = defineProps<WhoAmIType>()
 import RoundedImg from '../atoms/RoundedImg.vue';
 import { selectRandomItem } from '../utils/dates';
 import { whatIDoMessages, yearsOldMessages } from '../utils/presentationMessages';
 import { images } from '../utils/imagePicker';
-
+import { computed } from 'vue';
 const img = selectRandomItem<string>(images).selectedItem;
 const years = selectRandomItem<string>(yearsOldMessages).selectedItem;
 
-const presentations: string[] = [];
-let presentationsLeft = structuredClone(whatIDoMessages);
-for (let i = 0; i < 3; i++) {
-  const { selectedItem, itemsLeft } = selectRandomItem<string>(presentationsLeft);
-  presentations.push(selectedItem);
-  presentationsLeft = itemsLeft;
-}
+const presentations = computed(() => {
+    if (overridePresentations) {
+      return overridePresentations;
+    }
+
+    const randomPresentations: string[] = [];
+    let presentationsLeft = structuredClone(whatIDoMessages);
+    for (let i = 0; i < 3; i++) {
+      const { selectedItem, itemsLeft } = selectRandomItem<string>(presentationsLeft);
+      randomPresentations.push(selectedItem);
+      presentationsLeft = itemsLeft;
+    }
+
+    return randomPresentations;
+})
 </script>
 
 <style scoped>
@@ -51,6 +59,9 @@ for (let i = 0; i < 3; i++) {
 .flex>div {
   display: flex;
   align-items: center;
+}
 
+.reveal b, .reveal strong {
+  color: white!important;
 }
 </style>

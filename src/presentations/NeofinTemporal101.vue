@@ -6,19 +6,33 @@ import BlockPass from '../components/interactives/BlockPass.vue';
 import WhoAmI from '../components/WhoAmI.vue';
 import QuoteSomething from '../components/QuoteSomething.vue';
 import QrCodeTemporalCourses from '../assets/qr_code_temporal_courses.png';
+import { defaultLogo, imageDictionary } from '../utils/imagePicker';
+import RoundedImg from '../atoms/RoundedImg.vue';
+import IframeSection from '../components/IframeSection.vue';
 
+document.title = "Introdução ao Temporal.io | Palestras";
 const blockFunction = async () => {
   const { data } = await axios.get("http://localhost:3340/");
   return data;
 }
+
+const presentations = [
+  'Novo <b>Integrante</b> do time de <b>Integrações</b> <small class="fragment">(curtiu? 🤏🕶️😉)</small>',
+  'Trabalhando desde 2019 com Typescript, Python, Golang <small class="fragment">e ...PHP </small>',
+  'Palestrante em comunidades de tecnologia no <b>Estado</b> do <b>Ceará</b>',
+  'Ex-Tech Leader do Hemocentro do Estado do Ceará. <span class="fragment">Doe Sangue 🩸.</span>',
+];
 </script>
 
 <template>
   <section>
-    <Folder title="Temporal 101" subtitle="Introdução"></Folder>
+    <div class="flex-important">
+      <Folder title="Temporal 101" subtitle="Introdução"></Folder>
+      <RoundedImg :src="defaultLogo" alt="Logo DevGustavinho"/>
+    </div>
   </section>
-  <section data-background="#6272a4">
-    <WhoAmI :hasShadow="true" />
+  <section data-background="#6272A4">
+    <WhoAmI :img-src="imageDictionary.NormalPhoto2" :override-presentations="presentations" :has-shadow="true" />
   </section>
   <section>
     <div class="row">
@@ -27,10 +41,16 @@ const blockFunction = async () => {
         <div class="row">
           <QuoteSomething
             imgSrc="https://media.licdn.com/dms/image/v2/D4E03AQEy5pBxNXR0zQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1708357359221?e=1734566400&v=beta&t=JxmAgzftBEI6_ypScnKfKxBpVOzegc9eP8sOW2V9upI"
-            name="Angela Zhou" :titles="['Senior Technical Curriculum Engineer']" />
+            name="Angela Zhou" 
+            :titles="['Senior Technical Curriculum Engineer']"
+            href="https://www.linkedin.com/in/zhoua1115/"
+          />
           <QuoteSomething
             imgSrc="https://media.licdn.com/dms/image/v2/D5603AQFssBDwG_9BYg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1709680387191?e=1734566400&v=beta&t=pVkYHwwUeaCWu3JewxP1ZouqYbTCd0xPUcE26fjqi_s"
-            name="Tom Wheeler" :titles="['Principal Curriculum Developer', 'Developer Advocate']" />
+            name="Tom Wheeler" 
+            :titles="['Principal Curriculum Developer', 'Developer Advocate']"
+            href="https://www.linkedin.com/in/tomwheelerstl/"
+          />
         </div>
       </div>
       <div style="display: flex; align-items: flex-end;">
@@ -53,12 +73,12 @@ const blockFunction = async () => {
     </p>
     <p class="fragment"><b>Massa 👍</b>, agora o que isso significa?</p>
   </section>
-  <section>
+  <IframeSection iframe-url="http://localhost:8233/namespaces/default/workflows">
     <h3>Arquitetura do Temporal</h3>
     <p>Cluster</p>
-    <img src="">
+    
     <small>A plataforma do Temporal, onde é visível todo o processo</small>
-  </section>
+  </IframeSection>
   <section>
     <h3>Arquitetura do Temporal</h3>
     <p>Worker</p>
@@ -85,50 +105,50 @@ const blockFunction = async () => {
   </section>
   <section>
     <h2>Mão na massa</h2>
-    <p>Montaremos nosso pequeno Workflow. Vamos fazer um processo que pode dar falha várias vezes, mas se ao menos UMA
-      delas der OK, segue o baile.</p>
+    <small>Montaremos nosso pequeno Workflow. Vamos fazer um processo que pode dar falha várias vezes, mas se ao menos UMA
+      delas der OK, segue o baile.</small>
     <ol>
       <li>
         <strong>getUserWorkflow</strong>
-        <p>Vamos pegar um usuário de uma função que propositalmente falhará.</p>
+        <small>Vamos pegar um usuário de uma função que propositalmente falhará.</small>
       </li>
       <li>
         <strong>Observando no Cluster</strong>
-        <p>Podemos ver mais detalhadamente que Temporal executou com precisão</p>
+        <small>Podemos ver mais detalhadamente que Temporal executou com precisão</small>
       </li>
       <li>
         <strong>Aguardar os dados</strong>
-        <p>Todos os clients que estavam aguardando um resultado desse workflow será encerrado.</p>
+        <small>Todos os clients que estavam aguardando um resultado desse workflow será encerrado.</small>
       </li>
     </ol>
   </section>
   <section>
     <i>Com Temporal, todo o processo <b>deve ser descrito nos Workflows</b>. Todas as etapas menores devem ser
       <b>Activities</b>.</i>
-    <p>Precisa ser feito do zero em caso de falha? <b>Workflow</b></p>
-    <p>Precisa ser refeita apenas essa etapa em caso de falha? <b>Activity</b></p>
+    <small>Precisa ser feito do zero em caso de falha? <b>Workflow</b></small>
+    <small>Precisa ser refeita apenas essa etapa em caso de falha? <b>Activity</b></small>
   </section>
   <section>
-    <p>O Temporal não se limita a apenas execuções. Com ele é possível mudar e obter o estado de um <b>Workflow de longa
-        duração</b>, alterando seus dados internos.</p>
-    <p>Quando eu falar de signals, pense como o <b>addEventListener</b> do Javascript. Ele é registrado e aguarda
-      eventos do tipo acontecer para interagir.</p>
-    <p>Quando eu falar de queries, pense nos famosos <b>getters do POO</b>, principalmente do <b>Java</b>, que gosta de
-      encapsular tudo.</p>
+    <small>O Temporal não se limita a apenas execuções. Com ele é possível mudar e obter o estado de um <b>Workflow de longa
+        duração</b>, alterando seus dados internos.</small>
+    <small>Quando eu falar de signals, pense como o <b>addEventListener</b> do Javascript. Ele é registrado e aguarda
+      eventos do tipo acontecer para interagir.</small>
+    <small>Quando eu falar de queries, pense nos famosos <b>getters do POO</b>, principalmente do <b>Java</b>, que gosta de
+      encapsular tudo.</small>
   </section>
   <section>
     <h2>Longa duração</h2>
-    <p>Preciso que vocês entrem no link a seguir, botem seu nome e o nome de uma fruta. O próximo slide <b>só
-        passará</b> quando alguém acertar.</p>
+    <small>Preciso que vocês entrem no link a seguir, botem seu nome e o nome de uma fruta. O próximo slide <b>só
+        passará</b> quando alguém acertar.</small>
     <ol>
       <li>
         <strong>O que espero disso?</strong>
-        <p>Mostrar como funciona o Temporal History, como funcionam queries e um código simples sobre signals.</p>
+        <small>Mostrar como funciona o Temporal History, como funcionam queries e um código simples sobre signals.</small>
       </li>
       <li>
         <strong>Imaginem as possibilidades</strong>
-        <p>Enquanto eu estiver mostrando o código, quero que imagem cenários reais da sua equipe em que o
-          <b>Temporal</b> pode ser implementado.</p>
+        <small>Enquanto eu estiver mostrando o código, quero que imagem cenários reais da sua equipe em que o
+          <b>Temporal</b> pode ser implementado.</small>
       </li>
     </ol>
   </section>
@@ -148,17 +168,17 @@ const blockFunction = async () => {
   </section>
   <section>
     <h2>Encerramento</h2>
-    <p>Dito tudo isto, como nós podemos aplicar no dia-a-dia?</p>
+    <small>Dito tudo isto, como nós podemos aplicar no dia-a-dia?</small>
     <ol>
       <li>
         <strong>Como a <b>Integration Team</b> utiliza?</strong>
-        <p>Vamos ver um caso em que constantemente precisamos ter os dados de autenticação mais atuais de um usuário e
+        <small>Vamos ver um caso em que constantemente precisamos ter os dados de autenticação mais atuais de um usuário e
           não
-          podemos deixar o Workflow morrer de forma alguma.</p>
+          podemos deixar o Workflow morrer de forma alguma.</small>
       </li>
       <li>
         <strong>Shark Bowl</strong>
-        <p>Se alguém quiser, podemos imaginar agora uma solução para sua equipe.</p>
+        <small>Se alguém quiser, podemos imaginar agora uma solução para sua equipe.</small>
       </li>
     </ol>
   </section>
@@ -173,13 +193,10 @@ const blockFunction = async () => {
 </template>
 
 <style>
-.row {
-  display: flex;
-  flex-direction: row;
-}
-
-.column {
-  display: flex;
+.flex-important {
+  display: flex!important;
+  justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 </style>

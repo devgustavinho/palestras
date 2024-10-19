@@ -4,16 +4,18 @@ import NeofinTemporal101 from '../presentations/NeofinTemporal101.vue';
 import { formatDate } from './dates';
 
 type SlideOption = {
-    type: DefineComponent<any, any, any>,
+    component: DefineComponent<any, any, any>,
     name: string;
     date: Date;
+    route: `/${string}`;
     formatedDate: string;
     description?: string;
 }
 
 export const slidesOptions: SlideOption[] = [
     {
-      type: NeofinTemporal101,
+      component: NeofinTemporal101,
+      route: `/NeofinTemporal101` as `/${string}`,
       name: "Temporal 101 - Neofin",
       date: new Date(2024, 9, 24),
       formatedDate: formatDate(new Date(2024, 9, 24)),

@@ -1,0 +1,38 @@
+.row {
+    display: flex;
+    flex-direction: row;
+}
+  
+.column {
+    display: flex;
+    flex-direction: column;
+}
+.reveal ul li::marker, .reveal ol li::marker {
+    list-style: none
+}
+ul, ol {
+    list-style: none;
+    padding-left: 0;
+}
+  
+ul li::marker, ol li::marker {
+    content: "🐏 ";
+    margin-right: 8px;
+}
+
+:root {
+    --r-background-color: #282a43;
+    --r-heading-color: white;
+    --r-bold-color: #FF79C6;
+    --r-italic-color: #F1FA8C;
+    --r-inline-code-color: #50FA7B;
+    --r-list-bullet-color: #8BE9FD;
+}
+
+h1, h2, h3 {
+    font-weight: bolder;
+}
+
+.reveal h1, .reveal h2, .reveal h3 {
+    font-weight: bolder;
+}
