@@ -21,21 +21,21 @@ const currentView = computed(() => {
 </script>
 
 <template>
-  <section v-if="!currentView">
+  <template v-if="!currentView">
     <section v-for="[index, slide] in slidesOptions.entries()" :key="index">
       <div>
         <div>
-            <h2>{{  slide.name }}</h2>
-            <p> Ministrado em <b>{{ slide.formatedDate }}</b></p>
+            <h3>{{  slide.name }}</h3>
+            <small> Ministrado em <b>{{ slide.formatedDate }}</b></small>
             <blockquote>{{ slide.description }}</blockquote>
-          <a  :href="`#${slide.route}`" target="_blank">Acessar</a>
+          <a :href="`#${slide.route}`" target="_blank">Acessar</a>
         </div>
         <div>
           <iframe :src="`#${slide.route}`" frameborder="5"></iframe>
         </div>
       </div>
     </section>
-  </section>
+  </template>
   <component :is="currentView" />
 </template>
 

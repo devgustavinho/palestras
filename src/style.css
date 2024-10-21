@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: row;
 }
+
+.base-line {
+    align-items: baseline;
+}
   
 .column {
     display: flex;

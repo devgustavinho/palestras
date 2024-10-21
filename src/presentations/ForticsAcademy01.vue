@@ -1,34 +1,22 @@
 <script setup lang="ts">
-import axios from 'axios';
 import FinalSlide from '../components/FinalSlide.vue';
 import Folder from '../components/Folder.vue';
-import BlockPass from '../components/interactives/BlockPass.vue';
 import WhoAmI from '../components/WhoAmI.vue';
 import QuoteSomething from '../components/QuoteSomething.vue';
 import QrCodeTemporalCourses from '../assets/qr_code_temporal_courses.png';
-import { defaultLogo, imageDictionary, temporalLogo } from '../utils/imagePicker';
+import { defaultLogo, temporalLogo } from '../utils/imagePicker';
 import RoundedImg from '../atoms/RoundedImg.vue';
+import DefaultImg from '../atoms/DefaultImg.vue';
 import TemporalKeyWords from '../components/temporal_related/TemporalKeyWords.vue';
 import IKnowNothing from '../components/temporal_related/IKnowNothing.vue';
 
-document.title = "Introdução ao Temporal.io | Palestras";
-const blockFunction = async () => {
-  const { data } = await axios.get("http://localhost:3340/");
-  return data;
-}
-
-const presentations = [
-  'Novo <b>Integrante</b> do time de <b>Integrações</b> <small class="fragment">(curtiu? 🤏🕶️😉)</small>',
-  'Trabalhando desde 2019 com Typescript, Python, Golang <small class="fragment">e ...PHP </small>',
-  'Palestrante em comunidades de tecnologia no <b>Estado</b> do <b>Ceará</b>',
-  'Ex-Tech Leader do Hemocentro do Estado do Ceará. <span class="fragment">Doe Sangue 🩸.</span>',
-];
+document.title = "Temporal.io: Primeiros passos para o entendimento";
 </script>
 
 <template>
   <section>
     <div class="flex-important">
-      <Folder title="Temporal 101" subtitle="Introdução"></Folder>
+      <Folder title="Temporal.io:" subtitle="Primeiros passos para o entendimento"></Folder>
       <div class="row base-line">
         <RoundedImg :src="temporalLogo" alt="Logo Temporal"/>
         <RoundedImg :src="defaultLogo" alt="Logo DevGustavinho"/>
@@ -36,7 +24,7 @@ const presentations = [
     </div>
   </section>
   <section data-background="#6272A4">
-    <WhoAmI :img-src="imageDictionary.NormalPhoto2" :override-presentations="presentations" />
+    <WhoAmI />
   </section>
   <section>
     <div class="row">
@@ -77,6 +65,12 @@ const presentations = [
     </p>
     <p class="fragment"><b>Massa 👍</b>, agora o que isso significa?</p>
   </section>
+  <section>
+    <h3>Fundamentos do Temporal</h3>
+    <p><b>Workflow</b> é a principal abstração do Temporal.</p>
+    <p>Os Workflows do <i></i>Temporal são códigos resilientes que podem rodar <i>(e continuar rodando)</i> por anos e anos, mesmo que a infraestrutura dos microsserviços quebrem, mesmo que a conexão de uma API seja perdida e etc.</p>
+    <p>Se algum imprevisto acontecer, o Temporal vai recriar o estado anterior a falha e vai continuar como se nada tivesse acontecido.</p>
+  </section>
   <TemporalKeyWords />
   <section>
     <h2>Mão na massa</h2>
@@ -98,8 +92,8 @@ const presentations = [
     </ol>
   </section>
   <section>
-    <i>Com Temporal, todo o processo <b>deve ser descrito nos Workflows</b>. Todas as etapas menores devem ser
-      <b>Activities</b>.</i>
+    <span>Com Temporal, todo o processo <b>deve ser descrito nos Workflows</b>. Todas as etapas menores devem ser
+      <b>Activities</b>.</span><br>
     <small>Precisa ser feito do zero em caso de falha? <b>Workflow</b></small>
     <small>Precisa ser refeita apenas essa etapa em caso de falha? <b>Activity</b></small>
   </section>
@@ -113,33 +107,30 @@ const presentations = [
   </section>
   <section>
     <h2>Longa duração</h2>
-    <small>Preciso que vocês entrem no link a seguir, botem seu nome e o nome de uma fruta. O próximo slide <b>só
-        passará</b> quando alguém acertar.</small>
+    <small>Dessa vez tem prêmio: <b>Cada vez que você fizer a request, você vai ser registrado. O Temporal vai decidir quem vai ganhar.</b></small>
     <ol>
       <li>
         <strong>O que espero disso?</strong>
         <small>Mostrar como funciona o Temporal History, como funcionam queries e um código simples sobre signals.</small>
       </li>
       <li>
-        <strong>Imaginem as possibilidades</strong>
-        <small>Enquanto eu estiver mostrando o código, quero que imagem cenários reais da sua equipe em que o
-          <b>Temporal</b> pode ser implementado.</small>
+        <strong>O que vocês ganham</strong>
+        <small>Dois belos brindes. Ou não, vai depender de onde e quando a palestra vai ser feita. Tchau, obrigado.</small>
       </li>
     </ol>
   </section>
   <section>
-    <Folder title="⚠️ Palestra Interativa ⚠️" subtitle="Seu celular vai trazer alegria ao meu dia"></Folder>
+    <DefaultImg src="" alt="" />
   </section>
-  <section>
-    <Suspense>
-      <template #default>
-        <BlockPass :is-blocked-fn="blockFunction" :timeout-in-seconds="5"></BlockPass>
-      </template>
-      <template #fallback>
-        Aguardando suas tentativas.
-      </template>
-    </Suspense>
-    <img src="">
+  <section data-markdown>
+    <textarea data-template>
+      ## Slide 1
+      A paragraph with some text and a [link](https://hakim.se).
+      ---
+      ## Slide 2
+      ---
+      ## Slide 3
+    </textarea>
   </section>
   <section>
     <h2>Encerramento</h2>

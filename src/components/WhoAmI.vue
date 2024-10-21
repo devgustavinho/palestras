@@ -1,7 +1,7 @@
 <template>
   <div class="flex">
     <div>
-      <RoundedImg :has-shadow="hasShadow" :src="imgSrc ?? img" alt="Logo Gustavinho" />
+      <RoundedImg :has-shadow="true" :src="imgSrc ?? img" alt="Logo Gustavinho" />
     </div>
     <div>
       <div>
@@ -20,7 +20,6 @@
 type WhoAmIType = {
   imgSrc?: string;
   overridePresentations?: string[];
-  hasShadow?: boolean;
 }
 
 const { overridePresentations } = defineProps<WhoAmIType>()

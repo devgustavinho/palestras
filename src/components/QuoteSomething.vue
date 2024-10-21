@@ -5,7 +5,7 @@
           <DefaultImg v-else :src="imgSrc" :width="width" :alt="name"/>
           <span><b>{{ name }}</b></span>
           <small v-for="[index, title] of titles.entries()">
-              <span v-if="index == 0"><b style="color: #e36cff;">{{ title }}</b></span>
+              <span v-if="index == 0"><b>{{ title }}</b></span>
               <span v-else>{{ title }}</span>
           </small>
       </div>
