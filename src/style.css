@@ -25,6 +25,8 @@ ul li::marker, ol li::marker {
 }
 
 :root {
+    --r-main-font: Raleway;
+    --r-heading-font: Raleway;
     --r-background-color: #282a43;
     --r-heading-color: white;
     --r-bold-color: #FF79C6;

@@ -28,7 +28,7 @@ const presentations = [
 <template>
   <section>
     <div class="flex-important">
-      <Folder title="Temporal 101" subtitle="Introdução"></Folder>
+      <Folder title="Temporal 101" subtitle="Introdução" />
       <div class="row base-line">
         <RoundedImg :src="temporalLogo" alt="Logo Temporal"/>
         <RoundedImg :src="defaultLogo" alt="Logo DevGustavinho"/>
@@ -80,12 +80,12 @@ const presentations = [
   <TemporalKeyWords />
   <section>
     <h2>Mão na massa</h2>
-    <small>Montaremos nosso pequeno Workflow. Vamos fazer um processo que pode dar falha várias vezes, mas se ao menos UMA
-      delas der OK, segue o baile.</small>
+    <small>Montaremos nosso <b>CreateBillingWorkflow</b>. Vamos simular um dia de grande instabilidade nas APIs, podendo falhar várias vezes, mas se ao menos UMA
+      delas der OK, ele prossegue a criação da Billing.</small>
     <ol>
       <li>
-        <strong>getUserWorkflow</strong>
-        <small>Vamos pegar um usuário de uma função que propositalmente falhará.</small>
+        <strong>CreateBillingWorkflow</strong>
+        <small>Recriar de forma resumida e simplória a criação de Billings que temos hoje.</small>
       </li>
       <li>
         <strong>Observando no Cluster</strong>
@@ -93,23 +93,31 @@ const presentations = [
       </li>
       <li>
         <strong>Aguardar os dados</strong>
-        <small>Todos os clients que estavam aguardando um resultado desse workflow será encerrado.</small>
+        <small>Todos os clients que estavam aguardando um resultado desse workflow serão liberados.</small>
       </li>
     </ol>
   </section>
   <section>
     <i>Com Temporal, todo o processo <b>deve ser descrito nos Workflows</b>. Todas as etapas menores devem ser
       <b>Activities</b>.</i>
-    <small>Precisa ser feito do zero em caso de falha? <b>Workflow</b></small>
-    <small>Precisa ser refeita apenas essa etapa em caso de falha? <b>Activity</b></small>
+    <p>
+      <small>Precisa ser feito do zero em caso de falha? <b>Workflow</b></small>
+    </p>
+    <p>
+      <small>Precisa ser refeita apenas essa etapa em caso de falha? <b>Activity</b></small>
+    </p>
   </section>
   <section>
     <small>O Temporal não se limita a apenas execuções. Com ele é possível mudar e obter o estado de um <b>Workflow de longa
         duração</b>, alterando seus dados internos.</small>
-    <small>Quando eu falar de signals, pense como o <b>addEventListener</b> do Javascript. Ele é registrado e aguarda
-      eventos do tipo acontecer para interagir.</small>
-    <small>Quando eu falar de queries, pense nos famosos <b>getters do POO</b>, principalmente do <b>Java</b>, que gosta de
-      encapsular tudo.</small>
+    <p>
+      <small>Quando eu falar de signals, pense como o <b>addEventListener</b> do Javascript. Ele é registrado e aguarda
+    eventos do tipo acontecer para interagir.</small>
+    </p>
+    <p>
+      <small>Quando eu falar de queries, pense nos famosos <b>getters do POO</b>, principalmente do <b>Java</b>, que gosta de
+        encapsular tudo.</small>
+    </p>
   </section>
   <section>
     <h2>Longa duração</h2>
