@@ -3,6 +3,7 @@ import axios from 'axios';
 import FinalSlide from '../components/FinalSlide.vue';
 import Folder from '../components/Folder.vue';
 import BlockPass from '../components/interactives/BlockPass.vue';
+import LoopWait from '../components/interactives/WaitForResposnses.vue';
 import WhoAmI from '../components/WhoAmI.vue';
 import QuoteSomething from '../components/QuoteSomething.vue';
 import QrCodeTemporalCourses from '../assets/qr_code_temporal_courses.png';
@@ -10,10 +11,11 @@ import { defaultLogo, imageDictionary, temporalLogo } from '../utils/imagePicker
 import RoundedImg from '../atoms/RoundedImg.vue';
 import TemporalKeyWords from '../components/temporal_related/TemporalKeyWords.vue';
 import IKnowNothing from '../components/temporal_related/IKnowNothing.vue';
+import QRCodeBlock from '../atoms/QRCodeBlock.vue';
 
-document.title = "Introdução ao Temporal.io | Palestras";
+document.title = "Silo Break - Temporal.io | Palestras";
 const blockFunction = async () => {
-  const { data } = await axios.get("http://localhost:3340/");
+  const { data } = await axios.get("http://localhost:3340/checkWinner");
   return data;
 }
 
@@ -28,7 +30,7 @@ const presentations = [
 <template>
   <section>
     <div class="flex-important">
-      <Folder title="Temporal 101" subtitle="Introdução" />
+      <Folder title="Silo Break - Temporal.io" subtitle="Introdução ao Temporal" />
       <div class="row base-line">
         <RoundedImg :src="temporalLogo" alt="Logo Temporal"/>
         <RoundedImg :src="defaultLogo" alt="Logo DevGustavinho"/>
@@ -91,10 +93,6 @@ const presentations = [
         <strong>Observando no Cluster</strong>
         <small>Podemos ver mais detalhadamente que Temporal executou com precisão</small>
       </li>
-      <li>
-        <strong>Aguardar os dados</strong>
-        <small>Todos os clients que estavam aguardando um resultado desse workflow serão liberados.</small>
-      </li>
     </ol>
   </section>
   <section>
@@ -136,15 +134,18 @@ const presentations = [
     </ol>
   </section>
   <section>
-    <Folder title="⚠️ Palestra Interativa ⚠️" subtitle="Seu celular vai trazer alegria ao meu dia"></Folder>
+    <Folder title="⚠️ Parte Interativa ⚠️" subtitle="Seu celular vai trazer alegria ao meu dia"></Folder>
+  </section>
+  <section>
+    <QRCodeBlock url="https://da42-187-18-199-71.ngrok-free.app/" />
   </section>
   <section>
     <Suspense>
       <template #default>
-        <BlockPass :is-blocked-fn="blockFunction" :timeout-in-seconds="5"></BlockPass>
+        <BlockPass :is-blocked-fn="blockFunction" :timeout-in-seconds="5" :winner="{}"></BlockPass>
       </template>
       <template #fallback>
-        Aguardando suas tentativas.
+        <LoopWait />
       </template>
     </Suspense>
     <img src="">

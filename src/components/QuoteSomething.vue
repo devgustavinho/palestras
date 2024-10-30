@@ -3,10 +3,10 @@
       <div class="flex">
           <RoundedImg v-if="!isSquared" :src="imgSrc" :width="width" :alt="name" />
           <DefaultImg v-else :src="imgSrc" :width="width" :alt="name"/>
-          <span><b>{{ name }}</b></span>
+          <span :style="{ fontSize: textSize ?? 'unset' }"><b>{{ name }}</b></span>
           <small v-for="[index, title] of titles.entries()">
-              <span v-if="index == 0"><b>{{ title }}</b></span>
-              <span v-else>{{ title }}</span>
+              <span :style="{ fontSize: textSize ?? 'unset' }" v-if="index == 0"><b>{{ title }}</b></span>
+              <span :style="{ fontSize: textSize ?? 'unset' }" v-else>{{ title }}</span>
           </small>
       </div>
     </a>
@@ -23,6 +23,7 @@ import RoundedImg from '../atoms/RoundedImg.vue';
     href?: string;
     isSquared?: boolean;
     width?: number;
+    textSize?: string
   }
   
   defineProps<QuoteType>()
